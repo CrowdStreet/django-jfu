@@ -1,4 +1,4 @@
-from django.core.context_processors import csrf
+from django.template.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.template import Library, Context, loader
 
@@ -21,7 +21,7 @@ def jfu(
     Any additionally supplied positional and keyword arguments are directly
     forwarded to the named custom upload-handling URL.
     """
-    context.update( { 
+    context.update( {
         'JQ_OPEN'  : '{%',
         'JQ_CLOSE' : '%}',
         'upload_handler_url': reverse(
@@ -30,7 +30,7 @@ def jfu(
     } )
 
     # Use the request context variable, injected
-    # by django.core.context_processors.request,
+    # by django.template.context_processors.request,
     # to generate the CSRF token.
     context.update( csrf( context.get('request') ) )
 

@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': PROJECT_ROOT + '/demo.db',
     }
 }
@@ -155,9 +155,9 @@ def project_root( request ):
     return {'project_root':PROJECT_ROOT}
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'demo.settings.project_root',   
-    'django.core.context_processors.request',
-    'django.core.context_processors.static'
+    'demo.settings.project_root',
+    'django.template.context_processors.request',
+    'django.template.context_processors.static'
 )
 
 ALLOWED_HOSTS = [

@@ -1,10 +1,10 @@
 ----------------------------------------------------
-Django-JFU - A Django Library for jQuery File Upload 
+Django-JFU - A Django Library for jQuery File Upload
 ----------------------------------------------------
 
 Django-JFU is designed to simplify the tasks involved in integrating jQuery
 File Upload (https://github.com/blueimp/jquery-file-upload) into Django.
-Django-JFU assumes very little and leaves the model/view design up to the user. 
+Django-JFU assumes very little and leaves the model/view design up to the user.
 
 Other Django - jQuery File Upload implementations are full-featured but
 generally serve more as demonstrations than libraries for existing
@@ -23,7 +23,7 @@ Installation
 
 1. ``pip install django-jfu``.
 2. Add 'jfu' to ``INSTALLED_APPS`` in your project settings.py file.
-3. Add 'django.core.context_processors.request' and 'django.core.context_processors.static' to ``TEMPLATE_CONTEXT_PROCESSORS`` in settings.py.
+3. Add 'django.template.context_processors.request' and 'django.template.context_processors.static' to ``TEMPLATE_CONTEXT_PROCESSORS`` in settings.py.
 4. Run `python manage.py collectstatic`.
 
 
@@ -36,11 +36,11 @@ JavaScipt and the HTML implementation found in the jQuery File Upload demo.
 
 To place the jQuery File Upload widget in a template, simply insert the
 following within it::
-    
+
     {% load jfutags %}
     {% jfu %}
 
-Then create a view that will handle the uploaded files. 
+Then create a view that will handle the uploaded files.
 The URL for the view is expected to be named **'jfu_upload'** by default,
 although this can be customized (see Customization below).
 
@@ -55,7 +55,7 @@ In your ``urls.py`` file::
     url( r'^delete/(?P<pk>\d+)$', views.upload_delete, name = 'jfu_delete' ),
 
 In your ``views.py`` file::
-    
+
     import os
     from django.conf import settings
     from django.core.urlresolvers import reverse
@@ -78,7 +78,7 @@ In your ``views.py`` file::
         instance.save()
 
         basename = os.path.basename( instance.file.path )
-        
+
         file_dict = {
             'name' : basename,
             'size' : file.size,
@@ -107,7 +107,7 @@ In your ``views.py`` file::
 Customization
 -------------
 
-Django-JFU is designed to be very customizable.  
+Django-JFU is designed to be very customizable.
 
 The Django-JFU template tag optionally takes two arguments: the name of the
 template to load and the name of the URL pointing to the upload-handling
@@ -120,7 +120,7 @@ A custom template can extend from the master Django-JFU template
 `jfu/upload_form.html`.  There are several blocks which may be overriden for
 the purpose of customization:
 
-* JS_OPTS - The options supplied to the jQuery File Upload ``fileupload`` function. 
+* JS_OPTS - The options supplied to the jQuery File Upload ``fileupload`` function.
 * JS_INIT - The initializing JavaScript
 * FILE_INPUT - The file input for the upload form.
 
@@ -130,7 +130,7 @@ fileupload function in this manner::
 
     # your_fileuploader.html
     {% extends 'jfu/upload_form.html' %}
-    
+
     {% block JS_OPTS %}
     autoUpload: true,
     maxNumberOfFiles: 5,
@@ -151,7 +151,7 @@ HTML Components
   * UPLOAD_FORM_PROGRESS_BAR - The global progress information.
   * UPLOAD_FORM_BUTTON_BAR - The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload.
 
-    * UPLOAD_FORM_BUTTON_BAR_CONTROL - Contains buttons to start/cancel the upload or delete files. 
+    * UPLOAD_FORM_BUTTON_BAR_CONTROL - Contains buttons to start/cancel the upload or delete files.
     * UPLOAD_FORM_BUTTON_BAR_ADD     - Contains the file input used to add files.
         * FILE_INPUT or UPLOAD_FORM_BUTTON_BAR_ADD_FILE_INPUT - Contains the file input.
         * UPLOAD_FORM_BUTTON_BAR_ADD_EXTRA - An empty block allowing the addition of extra inputs.
@@ -164,27 +164,27 @@ CSS Components
 
 * CSS
 
-  * CSS_BOOTSTRAP 
-  * CSS_BLUEIMP_GALLERY 
+  * CSS_BOOTSTRAP
+  * CSS_BLUEIMP_GALLERY
   * CSS_JQUERY_FILE_UPLOAD
   * CSS_JQUERY_FILE_UPLOAD_UI
-  * CSS_HTML5_SHIM 
-  * CSS_EXTRA 
+  * CSS_HTML5_SHIM
+  * CSS_EXTRA
 
 JS Components
 =============
 
-* JS_TEMPLATES 
+* JS_TEMPLATES
 
-  * JS_DOWNLOAD_TEMPLATE 
+  * JS_DOWNLOAD_TEMPLATE
 
-    * JS_DOWNLOAD_TEMPLATE_DELETE 
-    * JS_DOWNLOAD_TEMPLATE_DOWNLOAD  
-    * JS_DOWNLOAD_TEMPLATE_PREVIEW 
-    * JS_DOWNLOAD_TEMPLATE_ERROR 
-    * JS_DOWNLOAD_TEMPLATE_FSIZE 
+    * JS_DOWNLOAD_TEMPLATE_DELETE
+    * JS_DOWNLOAD_TEMPLATE_DOWNLOAD
+    * JS_DOWNLOAD_TEMPLATE_PREVIEW
+    * JS_DOWNLOAD_TEMPLATE_ERROR
+    * JS_DOWNLOAD_TEMPLATE_FSIZE
 
-  * JS_UPLOAD_TEMPLATE 
+  * JS_UPLOAD_TEMPLATE
     * JS_UPLOAD_TEMPLATE_PREVIEW
     * JS_UPLOAD_TEMPLATE_UPLOAD
     * JS_UPLOAD_TEMPLATE_CONTROLS
@@ -192,15 +192,15 @@ JS Components
         * JS_UPLOAD_TEMPLATE_CANCEL
     * JS_UPLOAD_TEMPLATE_PROGRESSBAR
 
-* JS_SCRIPTS    
+* JS_SCRIPTS
 
-  * JS_JQUERY 
+  * JS_JQUERY
   * JS_JQUERY_UI_WIDGET
   * JS_TEMPLATES_PLUGIN
   * JS_LOAD_IMAGE
-  * JS_CANVAS_TO_BLOB 
-  * JS_BOOTSTRAP 
-  * JS_BLUEIMP_GALLERY 
+  * JS_CANVAS_TO_BLOB
+  * JS_BOOTSTRAP
+  * JS_BLUEIMP_GALLERY
   * JS_BOOTSTRAP_IFRAME_TRANSPORT
   * JS_JQUERY_FILE_UPLOAD
   * JS_JQUERY_FILE_UPLOAD_FP
@@ -208,8 +208,8 @@ JS Components
   * JS_JQUERY_FILE_UPLOAD_AUDIO
   * JS_JQUERY_FILE_UPLOAD_VIDEO
   * JS_JQUERY_FILE_UPLOAD_VALIDATE
-  * JS_JQUERY_FILEUPLOAD_UI 
-  * JS_XDR_TRANSPORT 
+  * JS_JQUERY_FILEUPLOAD_UI
+  * JS_XDR_TRANSPORT
   * JS_EXTRA
 
 The included JavaScript and CSS can be updated or suppressed by overriding
@@ -233,7 +233,7 @@ or by replacing the static files themselves.
 Demo
 ----
 If you have downloaded from the repository, a simple demo application has been
-included in the 'demo' directory. 
+included in the 'demo' directory.
 To test it out, enter the 'demo' directory and run ::
 
         ./setup && ./run
@@ -241,7 +241,7 @@ To test it out, enter the 'demo' directory and run ::
 Note that virtualenv is required for the demo to function.
 
 Contribution
-------------           
+------------
 Django-JFU is wholly open source and welcomes contributions of any kind. Feel
 free to either extend it, report bugs, or provide suggestions for improvements.
 The author of Django-JFU can be contacted at alem@cidola.com.
